@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 import styled from "styled-components";
-import Toolbar from "./Toolbar";
+import ToolbarBottom from "./ToolbarBottom";
+import ToolbarTop from "./ToolbarTop";
 
 const Wrapper = styled.div`
-  position: fixed;
+  position: relative;
 `;
 
 const Navigation = () => {
+  const { pathname } = useLocation();
   const [scrollY, setScrollY] = useState(window.pageYOffset);
 
   useEffect(() => {
@@ -20,7 +23,8 @@ const Navigation = () => {
 
   return (
     <Wrapper>
-      <Toolbar isBackgroundWhite={scrollY > 20} />
+      <ToolbarTop isBackgroundWhite={pathname === "/" && scrollY > 20} />
+      <ToolbarBottom isBackgroundBlack={pathname === "/" && scrollY > 20} />
     </Wrapper>
   );
 };

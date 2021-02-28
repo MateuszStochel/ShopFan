@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import HomePage from "../HomePage";
 import MainTemplate from "../MainTemplate";
 
-function App() {
+const App = () => {
   return (
     <MainTemplate>
       <Switch>
@@ -11,6 +11,6 @@ function App() {
       </Switch>
     </MainTemplate>
   );
-}
+};
 
 export default App;
