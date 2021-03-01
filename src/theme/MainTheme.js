@@ -11,6 +11,7 @@ export const theme = {
   white: "rgb(255,255,255)",
   transparent: "rgba(0,0,0,0)",
   black: "rgb(0,0,0)",
+  blackTransparent: "rgba(0,0,0, 0.4)",
   zIndex: {
     l1: "101",
     l2: "201",
@@ -19,6 +20,8 @@ export const theme = {
     l5: "501",
     l6: "601",
     l7: "701",
+    l8: "801",
+    l9: "901",
   },
   mq: Object.keys(breakpoints).reduce((acc, breakpoint) => {
     acc[breakpoint] = `@media (min-width: ${breakpoints[breakpoint]}px)`;

@@ -1,20 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
+import Aside from "./Aside";
 
-const Aside = styled.div`
-  z-index: 222222;
-  width: 100%;
-  height: 100%;
-`;
 const SideDrawerLinksWrapper = styled.div`
-  position: absolute;
   display: ${({ show }) => (show ? "flex" : "none")};
   flex-direction: column;
-  background-color: white;
-  height: 100vh;
-  width: 70%;
-  z-index: 20200;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+
   ${({ theme }) => theme.mq.lg} {
     ${({ show }) =>
       show &&
@@ -25,10 +20,11 @@ const SideDrawerLinksWrapper = styled.div`
       `};
   }
 `;
+
 const SideDrawerLink = styled(Link)``;
 const SideDrawer = ({ show, drawerClickHandler }) => {
   return (
-    <Aside>
+    <Aside title="menu" close={drawerClickHandler} isActive={show} side="left">
       <SideDrawerLinksWrapper show={show}>
         <SideDrawerLink onClick={drawerClickHandler} to="/">
           Home

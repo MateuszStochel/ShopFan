@@ -13,7 +13,7 @@ const ToolbarWrapper = styled.div`
   width: 100%;
   background-color: white;
   height: 70px;
-  z-index: ${({ theme }) => theme.zIndex.l5};
+  z-index: ${({ theme }) => theme.zIndex.l2};
   ${({ theme }) => theme.mq.lg} {
     ${({ background }) =>
       background &&

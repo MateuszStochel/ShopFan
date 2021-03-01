@@ -4,7 +4,7 @@ import styled from "styled-components";
 const ToolbarBottomWrapper = styled.div`
   position: fixed;
   top: 0;
-  z-index: 2222;
+  z-index: ${({ theme }) => theme.zIndex.l2};
   width: 100%;
   height: 30px;
   background-color: rgba(0, 0, 0, 0.6);

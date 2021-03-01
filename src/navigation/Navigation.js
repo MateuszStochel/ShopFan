@@ -5,6 +5,7 @@ import styled from "styled-components";
 import SideDrawer from "./SideDrawer";
 import ToolbarBottom from "./ToolbarBottom";
 import ToolbarTop from "./ToolbarTop";
+import SideShoppingCart from "./SideShoppingCart";
 
 const Wrapper = styled.div`
   position: relative;
@@ -14,6 +15,7 @@ const Navigation = () => {
   const { pathname } = useLocation();
   const [scrollY, setScrollY] = useState(window.pageYOffset);
   const [sideDrawerOpen, setSideDrawerOpen] = useState(false);
+  const [sideCartOpen, setSideCartOpen] = useState(false);
 
   useEffect(() => {
     const onScrollY = () => {
@@ -25,6 +27,9 @@ const Navigation = () => {
 
   const drawerToggleClickHandler = () => {
     setSideDrawerOpen(!sideDrawerOpen);
+  };
+  const shoppingCartToggleClickHandler = () => {
+    setSideCartOpen(!sideCartOpen);
   };
 
   return (
@@ -38,6 +43,7 @@ const Navigation = () => {
         show={sideDrawerOpen}
         drawerClickHandler={drawerToggleClickHandler}
       />
+      <SideShoppingCart s={} />
     </Wrapper>
   );
 };
