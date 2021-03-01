@@ -6,8 +6,12 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
 }
 
-button, input:focus, button:focus, select:focus{
-outline: 0!important;
+input, button, input:focus, button:focus, select:focus{
+outline: none!important
+}
+
+button:hover{
+    cursor: pointer;
 }
 
 `;

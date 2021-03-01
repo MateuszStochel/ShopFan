@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const DrawerToggleButton = ({ click }) => {
+const DrawerToggleButton = ({ drawerClickHandler }) => {
   const Button = styled.button`
     display: flex;
     flex-direction: column;
@@ -10,8 +10,12 @@ const DrawerToggleButton = ({ click }) => {
     background: transparent;
     padding: 0;
     height: 25px;
+    margin-left: 20px;
     width: 30px;
     cursor: pointer;
+    ${({ theme }) => theme.mq.lg} {
+      display: none;
+    }
   `;
 
   const ToggleButtonLine = styled.div`
@@ -20,6 +24,7 @@ const DrawerToggleButton = ({ click }) => {
     background-color: ${({ theme }) => theme.black};
     &:nth-child(1) {
       width: 20px;
+      height: 2px;
     }
     &:nth-child(2) {
       width: 25px;
@@ -27,7 +32,7 @@ const DrawerToggleButton = ({ click }) => {
   `;
 
   return (
-    <Button onClick={click}>
+    <Button onClick={drawerClickHandler}>
       <ToggleButtonLine />
       <ToggleButtonLine />
       <ToggleButtonLine />

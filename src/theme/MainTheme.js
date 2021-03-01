@@ -8,8 +8,18 @@ const breakpoints = {
 };
 
 export const theme = {
-  white: "rgb(255,255,255",
+  white: "rgb(255,255,255)",
+  transparent: "rgba(0,0,0,0)",
   black: "rgb(0,0,0)",
+  zIndex: {
+    l1: "101",
+    l2: "201",
+    l3: "301",
+    l4: "401",
+    l5: "501",
+    l6: "601",
+    l7: "701",
+  },
   mq: Object.keys(breakpoints).reduce((acc, breakpoint) => {
     acc[breakpoint] = `@media (min-width: ${breakpoints[breakpoint]}px)`;
     return acc;

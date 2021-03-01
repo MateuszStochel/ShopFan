@@ -5,16 +5,27 @@ import DrawerToggleButton from "./DrawerToggleButton";
 
 import heartIcon from "../assets/svg/heart.svg";
 import cartIcon from "../assets/svg/cart.svg";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const ToolbarWrapper = styled.div`
   position: fixed;
+  top: 30px;
   width: 100%;
+  background-color: white;
   height: 70px;
-  z-index: 300;
+  z-index: ${({ theme }) => theme.zIndex.l5};
+  ${({ theme }) => theme.mq.lg} {
+    ${({ background }) =>
+      background &&
+      css`
+        & {
+          background-color: transparent;
+        }
+      `}
+  }
 `;
 const InnerWrapper = styled.div`
-  max-width: 1600px;
+  max-width: 1500px;
   margin: 0 auto;
   height: 100%;
   display: flex;
@@ -24,25 +35,33 @@ const InnerWrapper = styled.div`
 const LinkItemsWrapper = styled.div`
   display: flex;
 `;
+const Logo = styled.h1`
+  font-size: 40px;
+`;
 const LinkItem = styled(NavLink)`
-  display: block;
+  padding-left: 20px;
+  display: none;
+  transition: 2s;
+  ${({ theme }) => theme.mq.lg} {
+    display: flex;
+  }
 `;
 const LogoWrapper = styled.div`
   display: flex;
   align-items: center;
 `;
-const LogoContentLeft = styled.h1``;
-const LogoContentMid = styled.span``;
-const LogoContentRight = styled.h1``;
 const OptionsWrapper = styled.div`
   display: flex;
 `;
 const Option = styled.div`
-  margin: 0 8px;
+  display: ${({ visible }) => (visible ? "flex" : "none")};
+  margin: 0 20px;
   position: relative;
   border-radius: 50%;
-  transition: 0.2s;
   cursor: pointer;
+  ${({ theme }) => theme.mq.lg} {
+    display: flex;
+  }
 `;
 const Icon = styled.div`
   width: 25px;
@@ -53,19 +72,17 @@ const Icon = styled.div`
   cursor: pointer;
 `;
 
-const ToolbarTop = (isBackgroundWhite) => {
+const ToolbarTop = ({ isBackgroundTransparent, drawerClickHandler }) => {
   return (
-    <ToolbarWrapper background={isBackgroundWhite}>
+    <ToolbarWrapper background={isBackgroundTransparent}>
       <InnerWrapper>
         <LinkItemsWrapper>
-          <DrawerToggleButton />
+          <DrawerToggleButton drawerClickHandler={drawerClickHandler} />
           <LinkItem to="/">Home</LinkItem>
           <LinkItem to="/">Catalog</LinkItem>
         </LinkItemsWrapper>
         <LogoWrapper>
-          <LogoContentLeft>Women</LogoContentLeft>
-          <LogoContentMid>&</LogoContentMid>
-          <LogoContentRight>Man</LogoContentRight>
+          <Logo>ShopFan</Logo>
         </LogoWrapper>
         <OptionsWrapper>
           <Option>
@@ -74,7 +91,7 @@ const ToolbarTop = (isBackgroundWhite) => {
           <Option>
             <Icon icon={cartIcon} />
           </Option>
-          <Option>
+          <Option visible>
             <Icon icon={cartIcon} />
           </Option>
         </OptionsWrapper>
