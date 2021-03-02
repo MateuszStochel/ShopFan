@@ -15,8 +15,9 @@ const InnerWrapper = styled.div`
   overflow: hidden;
   height: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top;
@@ -27,11 +28,45 @@ const InnerWrapper = styled.div`
     url(${({ img }) => img});
   background-position-x: right;
 `;
-
+const Innus = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+const Title = styled.h1`
+  position: relative;
+  margin-bottom: 60px;
+  margin-top: 60px;
+  &::after {
+    content: "";
+    width: 20%;
+    height: 1px;
+    background: white;
+    position: absolute;
+    left: 0;
+    top: 50%;
+  }
+  &::before {
+    content: "";
+    width: 20%;
+    height: 1px;
+    background: white;
+    position: absolute;
+    right: 0;
+    top: 50%;
+  }
+`;
 const HomePage = () => {
   return (
     <Wrapper>
-      <InnerWrapper img={innerImage}></InnerWrapper>
+      <InnerWrapper img={innerImage}>
+        <Innus>
+          <Title>hi</Title>
+          <h1>Check our style!</h1>
+          <Title>Join us</Title>
+        </Innus>
+      </InnerWrapper>
       <InnerWrapper img={innerImage}></InnerWrapper>
     </Wrapper>
   );

@@ -26,18 +26,18 @@ const SideDrawerLink = styled(Link)`
   font-size: 20px;
 `;
 const SideDrawer = () => {
-  const { sideDrawerOpen, drawerToggleClickHandler } = useContext(
+  const { isSideDrawer, drawerToggleClickHandler } = useContext(
     NavigationContext
   );
   return (
     <Aside
-      title="menu"
-      close={drawerToggleClickHandler}
-      isActive={sideDrawerOpen}
+      asideTitle="menu"
       side="left"
+      onClose={drawerToggleClickHandler}
+      isActive={isSideDrawer}
     >
-      <SideDrawerLinksWrapper show={sideDrawerOpen}>
-        <SideDrawerLink onClick={drawerToggleClickHandler} to="/">
+      <SideDrawerLinksWrapper show={isSideDrawer}>
+        <SideDrawerLink onClick={drawerToggleClickHandler} to="/home">
           Home
         </SideDrawerLink>
         <SideDrawerLink>Catalog</SideDrawerLink>

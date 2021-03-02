@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const ToolbarBottomWrapper = styled.div`
   position: fixed;
@@ -7,7 +7,12 @@ const ToolbarBottomWrapper = styled.div`
   z-index: ${({ theme }) => theme.zIndex.l2};
   width: 100%;
   height: 30px;
-  background-color: transparent;
+  background-color: ${({ theme }) => theme.transparent};
+  ${({ backgroundTransparent }) =>
+    backgroundTransparent &&
+    css`
+      background-color: ${({ theme }) => theme.blackTransparent};
+    `}
 `;
 
 const InnerWrapper = styled.div`
@@ -31,9 +36,9 @@ const Button = styled.button`
   background-color: transparent;
 `;
 
-const ToolbarBottom = () => {
+const ToolbarBottom = ({ isBackgroundTransparent }) => {
   return (
-    <ToolbarBottomWrapper>
+    <ToolbarBottomWrapper backgroundTransparent={isBackgroundTransparent}>
       <InnerWrapper>
         <ButtonsWrapper>
           <Button>Register</Button>

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-import styled from "styled-components";
-import SideDrawer from "./SideDrawer";
 import ToolbarBottom from "./ToolbarBottom";
 import ToolbarTop from "./ToolbarTop";
+import SideDrawer from "./SideDrawer";
 import SideShoppingCart from "./SideShoppingCart";
+
+import styled from "styled-components";
 
 const Wrapper = styled.div`
   position: relative;
@@ -25,8 +26,10 @@ const Navigation = () => {
 
   return (
     <Wrapper>
-      <ToolbarTop isBackgroundTransparent={pathname === "/" && scrollY < 10} />
-      <ToolbarBottom isBackgroundBlack={pathname === "/" && scrollY > 20} />
+      <ToolbarTop isBackgroundTransparent={pathname === "/" && scrollY < 20} />
+      <ToolbarBottom
+        isBackgroundTransparent={pathname === "/" && scrollY > 20}
+      />
       <SideDrawer />
       <SideShoppingCart />
     </Wrapper>

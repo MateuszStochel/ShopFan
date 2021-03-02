@@ -1,18 +1,27 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import Backdrop from "./Backdrop";
+
+import closeIcon from "../assets/svg/delete.svg";
 
 const SideNavWrapper = styled.div`
   position: fixed;
   top: 0;
   bottom: 0;
   ${({ side }) => side}: 0;
-  width: 300px;
-  transition: 2s;
   visibility: hidden;
+  flex-direction: column;
   justify-content: center;
+  width: 300px;
   transform: translateX(-100%);
   align-items: center;
+  transition: 0.3s;
+  z-index: ${({ theme }) => theme.zIndex.l10};
+  background-color: red;
+  ${({ side }) =>
+    side === "right" &&
+    css`
+      transform: translateX(100%);
+    `}
   ${({ theme }) => theme.mq.lg} {
     ${({ side }) =>
       side === "left" &&
@@ -21,13 +30,13 @@ const SideNavWrapper = styled.div`
       `}
   }
   ${({ theme }) => theme.mq.sm} {
-    width: 300px;
+    width: 400px;
   }
   ${({ isActive }) =>
     isActive &&
     css`
-      transform: translateX(0);
       visibility: visible;
+      transform: translateX(0);
     `}
 `;
 const HeaderWrapper = styled.div`
@@ -46,15 +55,23 @@ const HeaderTitle = styled.h1`
   margin: 30px 0;
   text-transform: uppercase;
 `;
-const CloseButton = styled.div``;
-const Aside = ({ children, title, close, isActive, side }) => {
+const CloseButton = styled.button`
+  width: 25px;
+  height: 25px;
+  background: url(${({ icon }) => icon}) no-repeat center;
+  border: none;
+  transition: 0.5s;
+  &:hover {
+    transform: rotate(360deg);
+  }
+`;
+const Aside = ({ children, asideTitle, onClose, isActive, side }) => {
   return (
     <SideNavWrapper isActive={isActive} side={side}>
-      <Backdrop isActive={isActive} onClick={close} />
       <ContentWrapper>
         <HeaderWrapper>
-          <HeaderTitle>{title}</HeaderTitle>
-          <CloseButton onClick={close}>X</CloseButton>
+          <HeaderTitle>{asideTitle}</HeaderTitle>
+          <CloseButton icon={closeIcon} onClick={onClose}></CloseButton>
         </HeaderWrapper>
         {children}
       </ContentWrapper>

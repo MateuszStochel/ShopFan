@@ -22,18 +22,18 @@ const SideDrawerLinksWrapper = styled.div`
 `;
 const SideDrawerLink = styled(Link)``;
 const SideShoppingCart = () => {
-  const { shoppingCartToggleClickHandler, sideCartOpen } = useContext(
+  const { shoppingCartToggleClickHandler, isSideCart } = useContext(
     NavigationContext
   );
 
   return (
     <Aside
-      title="menu"
-      close={shoppingCartToggleClickHandler}
-      isActive={sideCartOpen}
+      asideTitle="menu"
+      onClose={shoppingCartToggleClickHandler}
+      isActive={isSideCart}
       side="right"
     >
-      <SideDrawerLinksWrapper show={sideCartOpen}>
+      <SideDrawerLinksWrapper show={isSideCart}>
         <SideDrawerLink onClick={shoppingCartToggleClickHandler} to="/">
           Home
         </SideDrawerLink>

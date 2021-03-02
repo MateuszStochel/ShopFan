@@ -1,26 +1,27 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 
-import DrawerToggleButton from "./DrawerToggleButton";
-
-import heartIcon from "../assets/svg/heart.svg";
-import cartIcon from "../assets/svg/cart.svg";
-import styled, { css } from "styled-components";
-import Logo from "./Logo";
 import { NavigationContext } from "../context/NavigationProvider";
+
+import Logo from "./Logo";
+import cartIcon from "../assets/svg/cart.svg";
+import heartIcon from "../assets/svg/heart.svg";
+import bars from "../assets/svg/bars.svg";
+
+import styled, { css } from "styled-components";
 
 const ToolbarWrapper = styled.div`
   position: fixed;
   top: 30px;
   width: 100%;
-  background-color: ${({ theme }) => theme.white};
   border-bottom: 1px solid white;
   height: 90px;
   transition: 0.3s;
+  background-color: ${({ theme }) => theme.white};
   z-index: ${({ theme }) => theme.zIndex.l2};
   ${({ theme }) => theme.mq.lg} {
-    ${({ background }) =>
-      background &&
+    ${({ backgroundTransparent }) =>
+      backgroundTransparent &&
       css`
         & {
           background-color: transparent;
@@ -82,15 +83,25 @@ const Option = styled.div`
   ${({ theme }) => theme.mq.lg} {
     display: flex;
   }
+  ${({ sideMenu }) =>
+    sideMenu &&
+    css`
+      ${({ theme }) => theme.mq.lg} {
+        display: none;
+      }
+    `}
 `;
 const Icon = styled.button`
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   background: url(${({ icon }) => icon}) no-repeat center;
   background-size: 100%;
-  color: white !important;
   border: none;
   cursor: pointer;
+  ${({ theme }) => theme.mq.sm} {
+    width: 30px;
+    height: 30px;
+  }
 `;
 
 const ToolbarTop = ({ isBackgroundTransparent }) => {
@@ -100,19 +111,27 @@ const ToolbarTop = ({ isBackgroundTransparent }) => {
   } = useContext(NavigationContext);
 
   return (
-    <ToolbarWrapper background={isBackgroundTransparent}>
+    <ToolbarWrapper backgroundTransparent={isBackgroundTransparent}>
       <InnerWrapper>
         <LinkItemsWrapper>
-          <DrawerToggleButton drawerClickHandler={drawerToggleClickHandler} />
+          <Option sideMenu visible onClick={drawerToggleClickHandler}>
+            <Icon icon={bars} />
+          </Option>
           <LinkItem to="/">Home</LinkItem>
           <LinkItem to="/">Catalog</LinkItem>
         </LinkItemsWrapper>
         <LogoWrapper>
-          <Logo border="border-right" background={isBackgroundTransparent}>
+          <Logo
+            border="border-right"
+            backgroundTransparent={isBackgroundTransparent}
+          >
             WOMEN
           </Logo>
           <LogoContentMid>&</LogoContentMid>
-          <Logo border="border-left" background={isBackgroundTransparent}>
+          <Logo
+            border="border-left"
+            backgroundTransparent={isBackgroundTransparent}
+          >
             MEN
           </Logo>
         </LogoWrapper>
