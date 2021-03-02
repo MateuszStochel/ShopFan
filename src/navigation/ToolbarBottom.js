@@ -7,7 +7,7 @@ const ToolbarBottomWrapper = styled.div`
   z-index: ${({ theme }) => theme.zIndex.l2};
   width: 100%;
   height: 30px;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: transparent;
 `;
 
 const InnerWrapper = styled.div`

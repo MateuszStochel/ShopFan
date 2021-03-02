@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import innerImage from "./assets/Images/background.jpg";
+import innerImage from "./assets/Images/BackgroundG.jpg";
 
 const Wrapper = styled.div`
   position: absolute;
@@ -21,10 +21,11 @@ const InnerWrapper = styled.div`
   background-size: cover;
   background-position: top;
   background-image: linear-gradient(
-      rgba(0, 0, 0, 0.1),
-      rgba(250, 250, 250, 0.3)
+      rgba(0, 0, 0, 0.4),
+      rgba(250, 250, 250, 0.2)
     ),
     url(${({ img }) => img});
+  background-position-x: right;
 `;
 
 const HomePage = () => {

@@ -28,6 +28,7 @@ const DrawerToggleButton = ({ drawerClickHandler }) => {
     }
     &:nth-child(2) {
       width: 25px;
+      height: 1px;
     }
   `;
 

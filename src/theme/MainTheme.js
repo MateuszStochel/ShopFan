@@ -22,6 +22,7 @@ export const theme = {
     l7: "701",
     l8: "801",
     l9: "901",
+    l10: "1001",
   },
   mq: Object.keys(breakpoints).reduce((acc, breakpoint) => {
     acc[breakpoint] = `@media (min-width: ${breakpoints[breakpoint]}px)`;

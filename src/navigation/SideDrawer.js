@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
+import { NavigationContext } from "../context/NavigationProvider";
 import Aside from "./Aside";
 
 const SideDrawerLinksWrapper = styled.div`
@@ -20,18 +21,28 @@ const SideDrawerLinksWrapper = styled.div`
       `};
   }
 `;
-
-const SideDrawerLink = styled(Link)``;
-const SideDrawer = ({ show, drawerClickHandler }) => {
+const SideDrawerLink = styled(Link)`
+  margin-bottom: 20px;
+  font-size: 20px;
+`;
+const SideDrawer = () => {
+  const { sideDrawerOpen, drawerToggleClickHandler } = useContext(
+    NavigationContext
+  );
   return (
-    <Aside title="menu" close={drawerClickHandler} isActive={show} side="left">
-      <SideDrawerLinksWrapper show={show}>
-        <SideDrawerLink onClick={drawerClickHandler} to="/">
+    <Aside
+      title="menu"
+      close={drawerToggleClickHandler}
+      isActive={sideDrawerOpen}
+      side="left"
+    >
+      <SideDrawerLinksWrapper show={sideDrawerOpen}>
+        <SideDrawerLink onClick={drawerToggleClickHandler} to="/">
           Home
         </SideDrawerLink>
         <SideDrawerLink>Catalog</SideDrawerLink>
         <SideDrawerLink>Sth</SideDrawerLink>
-        <div onClick={drawerClickHandler}>X</div>
+        <div onClick={drawerToggleClickHandler}>X</div>
       </SideDrawerLinksWrapper>
     </Aside>
   );

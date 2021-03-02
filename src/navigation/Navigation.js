@@ -14,8 +14,6 @@ const Wrapper = styled.div`
 const Navigation = () => {
   const { pathname } = useLocation();
   const [scrollY, setScrollY] = useState(window.pageYOffset);
-  const [sideDrawerOpen, setSideDrawerOpen] = useState(false);
-  const [sideCartOpen, setSideCartOpen] = useState(false);
 
   useEffect(() => {
     const onScrollY = () => {
@@ -25,25 +23,12 @@ const Navigation = () => {
     return () => window.removeEventListener("scroll", onScrollY);
   }, []);
 
-  const drawerToggleClickHandler = () => {
-    setSideDrawerOpen(!sideDrawerOpen);
-  };
-  const shoppingCartToggleClickHandler = () => {
-    setSideCartOpen(!sideCartOpen);
-  };
-
   return (
     <Wrapper>
-      <ToolbarTop
-        isBackgroundTransparent={pathname === "/" && scrollY < 10}
-        drawerClickHandler={drawerToggleClickHandler}
-      />
+      <ToolbarTop isBackgroundTransparent={pathname === "/" && scrollY < 10} />
       <ToolbarBottom isBackgroundBlack={pathname === "/" && scrollY > 20} />
-      <SideDrawer
-        show={sideDrawerOpen}
-        drawerClickHandler={drawerToggleClickHandler}
-      />
-      <SideShoppingCart s={} />
+      <SideDrawer />
+      <SideShoppingCart />
     </Wrapper>
   );
 };
