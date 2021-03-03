@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import innerImage from "./assets/Images/BackgroundG.jpg";
+import Slider from "./Slider";
 
 const Wrapper = styled.div`
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
@@ -60,14 +61,7 @@ const Title = styled.h1`
 const HomePage = () => {
   return (
     <Wrapper>
-      <InnerWrapper img={innerImage}>
-        <Innus>
-          <Title>hi</Title>
-          <h1>Check our style!</h1>
-          <Title>Join us</Title>
-        </Innus>
-      </InnerWrapper>
-      <InnerWrapper img={innerImage}></InnerWrapper>
+      <InnerWrapper img={innerImage} />
     </Wrapper>
   );
 };
