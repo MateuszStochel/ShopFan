@@ -4,14 +4,16 @@ import styled, { css } from "styled-components";
 const ToolbarBottomWrapper = styled.div`
   position: fixed;
   top: 0;
-  z-index: ${({ theme }) => theme.zIndex.l2};
+  z-index: ${({ theme }) => theme.zIndex.l4};
   width: 100%;
   height: 30px;
-  background-color: ${({ theme }) => theme.transparent};
+  background-color: ${({ theme }) => theme.blackTransparent};
   ${({ backgroundTransparent }) =>
-    backgroundTransparent &&
+    !backgroundTransparent &&
     css`
-      background-color: ${({ theme }) => theme.blackTransparent};
+      ${({ theme }) => theme.mq.lg} {
+        background: ${({ theme }) => theme.transparent};
+      }
     `}
 `;
 

@@ -40,8 +40,8 @@ const SideDrawer = () => {
         <SideDrawerLink onClick={drawerToggleClickHandler} to="/home">
           Home
         </SideDrawerLink>
-        <SideDrawerLink>Catalog</SideDrawerLink>
-        <SideDrawerLink>Sth</SideDrawerLink>
+        <SideDrawerLink to="/">Catalog</SideDrawerLink>
+        <SideDrawerLink to="/">Sth</SideDrawerLink>
         <div onClick={drawerToggleClickHandler}>X</div>
       </SideDrawerLinksWrapper>
     </Aside>

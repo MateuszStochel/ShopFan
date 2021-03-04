@@ -37,8 +37,8 @@ const SideShoppingCart = () => {
         <SideDrawerLink onClick={shoppingCartToggleClickHandler} to="/">
           Home
         </SideDrawerLink>
-        <SideDrawerLink>Catalog</SideDrawerLink>
-        <SideDrawerLink>Sth</SideDrawerLink>
+        <SideDrawerLink to="/">Catalog</SideDrawerLink>
+        <SideDrawerLink to="/">Sth</SideDrawerLink>
         <div onClick={shoppingCartToggleClickHandler}>X</div>
       </SideDrawerLinksWrapper>
     </Aside>
