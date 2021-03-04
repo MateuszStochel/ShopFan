@@ -14,7 +14,7 @@ const Logo = styled.h1`
       backgroundTransparent ? "white" : "black"};
   }
   ${({ theme }) => theme.mq.sm} {
-    font-size: 35px;
+    font-size: 30px;
   }
   ${({ theme }) => theme.mq.lg} {
     font-size: 40px;

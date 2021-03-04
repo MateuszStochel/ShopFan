@@ -1,5 +1,6 @@
 import React from "react";
 import styled, { css } from "styled-components";
+import SlideTitle from "./SliderText";
 
 const SlideWrapper = styled.div`
   position: absolute;
@@ -9,6 +10,7 @@ const SlideWrapper = styled.div`
   height: 100%;
   opacity: 0;
   transition: 0.8s;
+  overflow: hidden;
   z-index: ${({ theme }) => theme.zIndex.l1};
   ${({ isActive }) =>
     isActive &&
@@ -31,103 +33,73 @@ const InnerWrapper = styled.div`
   background-position-x: right;
 `;
 const SlideContentText = styled.div`
-  margin-top: 50px;
-  opacity: 0;
-  transition: 0.8s;
   position: relative;
   display: flex;
   height: 150px;
   width: 90%;
-  color: white;
+  margin-top: 50px;
+  opacity: 0;
+  transform: scale(2);
+  transition: 0.8s;
+  color: ${({ theme }) => theme.white};
   &:after {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
-    width: 5px;
+    width: 7px;
     height: 100%;
-    background-color: white;
+    background-color: ${({ theme }) => theme.white};
   }
   &:before {
     content: "";
     position: absolute;
     top: 0;
     right: 0;
-    width: 5px;
+    width: 7px;
     height: 100%;
-    background-color: white;
+    background-color: ${({ theme }) => theme.white};
+  }
+  ${({ theme }) => theme.mq.lg} {
+    height: 300px;
+    width: 60%;
+    &:after,
+    &:before {
+      width: 10px;
+    }
+  }
+  ${({ theme }) => theme.mq.lg} {
+    width: 50%;
   }
   ${({ isActive }) =>
     isActive &&
     css`
       opacity: 1;
+      transform: scale(1);
     `};
 `;
-const SlideTitle = styled.h1`
-  transform: translateY(-50%);
-  text-transform: uppercase;
-  text-align: center;
-  position: absolute;
-  font-size: 20px;
-  top: 0;
-  width: 100%;
-  &:after {
-    content: "";
-    position: absolute;
-    bottom: 50%;
-    left: 0;
-    width: 20%;
-    height: 5px;
-    background-color: white;
-  }
 
-  &:before {
-    content: "";
-    position: absolute;
-    bottom: 50%;
-    right: 0;
-    width: 20%;
-    height: 5px;
-    background-color: white;
-  }
-`;
-const SlideText = styled.h1`
-  transform: translateY(50%);
-  text-align: center;
-  font-size: 20px;
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  &:after {
-    content: "";
-    position: absolute;
-    bottom: 50%;
-    left: 0;
-    width: 20%;
-    height: 0;
-    height: 5px;
-    background-color: white;
-  }
-  &:before {
-    content: "";
-    position: absolute;
-    bottom: 50%;
-    right: 0;
-    width: 20%;
-    height: 5px;
-
-    background-color: white;
-  }
-`;
 const Button = styled.button`
   position: absolute;
-  top: 70%;
+  top: 50%;
   left: 50%;
-  font-size: 15px;
+  transform: translate(-50%, -50%);
   padding: 10px;
+  font-size: 14px;
   border: none;
   border-radius: 40px;
-  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: ${({ theme }) => theme.blackTransparent};
+  ${({ theme }) => theme.mq.sm} {
+    font-size: 18px;
+    top: 60%;
+  }
+  ${({ theme }) => theme.mq.lg} {
+    font-size: 23px;
+    padding: 14px 23px;
+  }
 `;
 const Slide = ({ title, subTitle, image, isActive }) => {
   console.log(isActive);
@@ -135,9 +107,9 @@ const Slide = ({ title, subTitle, image, isActive }) => {
     <SlideWrapper isActive={isActive}>
       <InnerWrapper img={image} alt="sliderImage">
         <SlideContentText isActive={isActive}>
-          <SlideTitle>{title}</SlideTitle>
+          <SlideTitle position="top">{title}</SlideTitle>
           <Button>New Style</Button>
-          <SlideText>{subTitle}</SlideText>
+          <SlideTitle position="bottom">{subTitle}</SlideTitle>
         </SlideContentText>
       </InnerWrapper>
     </SlideWrapper>

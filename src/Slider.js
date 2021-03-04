@@ -23,6 +23,7 @@ const slides = [
 ];
 
 const SliderWrapper = styled.div`
+  background-color: black;
   position: relative;
   height: 100vh;
   width: 100%;
@@ -43,6 +44,10 @@ const Dot = styled.div`
   border-radius: 50%;
   cursor: pointer;
   background-color: ${({ theme }) => theme.whiteTransparent};
+  ${({ theme }) => theme.mq.lg} {
+    width: 25px;
+    height: 25px;
+  }
   ${({ isActive }) =>
     isActive &&
     css`
