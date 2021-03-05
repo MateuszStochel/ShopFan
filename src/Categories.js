@@ -12,12 +12,11 @@ const CategoriesWrapper = styled.div`
   margin: 0 auto;
 `;
 const Category = styled.div`
-  width: 100%;
-  height: 300px;
   position: relative;
   flex-basis: calc(50% - 20px);
+  transform: scale(1);
   margin: 10px;
-  justify-content: space-between;
+  height: 300px;
   &:nth-child(4),
   :nth-child(5) {
     display: flex;
@@ -34,7 +33,6 @@ const Category = styled.div`
   }
   ${({ theme }) => theme.mq.lg} {
     height: 600px;
-
     &:nth-child(4),
     :nth-child(5) {
       height: 350px;
@@ -50,12 +48,19 @@ const Category = styled.div`
     }
   }
 `;
-const CategoryLink = styled.div`
-  margin-top: 10px;
-  height: 100%;
-  position: relative;
-  cursor: pointer;
-  &: hover;
+const CategoryButton = styled.button`
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  padding: 10px 20px;
+  background-color: ${({ theme }) => theme.blackTransparent};
+  color: ${({ theme }) => theme.white};
+  ${({ theme }) => theme.mq.sm} {
+    font-size: 20px;
+    padding: 12px 24px;
+  }
 `;
 const CategoryImage = styled.img`
   width: 100%;
@@ -64,31 +69,27 @@ const CategoryImage = styled.img`
   ${({ theme }) => theme.mq.lg} {
   }
 `;
-const CategoryTitle = styled.h1`
-  text-align: center;
+const CategoryLink = styled.div`
   position: relative;
-  font-size: 40px;
+  margin-top: 10px;
+  height: 100%;
+  cursor: pointer;
+  &:hover ${CategoryButton} {
+    background-color: ${({ theme }) => theme.white};
+    color: ${({ theme }) => theme.black};
+  }
+`;
+const CategoryTitle = styled.h1`
+  position: relative;
   width: 100%;
+  text-align: center;
+  font-size: 40px;
   margin: 20px 0;
   ${({ theme }) => theme.mq.sm} {
     font-size: 50px;
   }
   ${({ theme }) => theme.mq.lg} {
     font-size: 60px;
-  }
-`;
-const CategoryButton = styled.button`
-  position: absolute;
-  transform: translate(-50%, -50%);
-  bottom: 5%;
-  font-size: 18px;
-  background-color: ${({ theme }) => theme.blackTransparent};
-  color: white;
-  padding: 10px 20px;
-  left: 50%;
-  ${({ theme }) => theme.mq.sm} {
-    font-size: 20px;
-    padding: 12px 24px;
   }
 `;
 
