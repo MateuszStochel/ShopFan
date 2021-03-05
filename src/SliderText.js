@@ -63,6 +63,14 @@ const SlideTitle = styled.h1`
       width: 12%;
     }
   }
+  ${({ theme }) => theme.mq.xxl} {
+    &:after {
+      width: 18%;
+    }
+    &:before {
+      width: 18%;
+    }
+  }
 `;
 
 export default SlideTitle;

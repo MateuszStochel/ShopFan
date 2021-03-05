@@ -27,7 +27,10 @@ const InnerWrapper = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(2, 15, 32, 0.4)),
+  background-image: linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(122, 122, 122, 0.1)
+    ),
     url(${({ img }) => img});
   background-size: cover;
   background-position-x: right;
@@ -39,7 +42,6 @@ const SlideContentText = styled.div`
   width: 90%;
   margin-top: 50px;
   opacity: 0;
-  transform: scale(2);
   transition: 0.8s;
   color: ${({ theme }) => theme.white};
   &:after {
@@ -75,7 +77,6 @@ const SlideContentText = styled.div`
     isActive &&
     css`
       opacity: 1;
-      transform: scale(1);
     `};
 `;
 
@@ -88,10 +89,9 @@ const Button = styled.button`
   font-size: 14px;
   border: none;
   border-radius: 40px;
-  color: white;
   font-weight: bold;
   text-transform: uppercase;
-  background-color: ${({ theme }) => theme.blackTransparent};
+  background-color: white;
   ${({ theme }) => theme.mq.sm} {
     font-size: 18px;
     top: 60%;
@@ -108,7 +108,7 @@ const Slide = ({ title, subTitle, image, isActive }) => {
       <InnerWrapper img={image} alt="sliderImage">
         <SlideContentText isActive={isActive}>
           <SlideTitle position="top">{title}</SlideTitle>
-          <Button>New Style</Button>
+          <Button>Shop now</Button>
           <SlideTitle position="bottom">{subTitle}</SlideTitle>
         </SlideContentText>
       </InnerWrapper>

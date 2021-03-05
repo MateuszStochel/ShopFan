@@ -11,13 +11,13 @@ const slides = [
   {
     id: 1,
     title: "Find your style",
-    subTitle: "Women&Men",
+    subTitle: "New arrival",
     image: sliderImage,
   },
   {
     id: 2,
     title: "Find your style",
-    subTitle: "Women&Men",
+    subTitle: "New arrival",
     image: sliderImage2,
   },
 ];
@@ -30,7 +30,7 @@ const SliderWrapper = styled.div`
 `;
 
 const DotsChangeSlideWrapper = styled.div`
-  z-index: ${({ theme }) => theme.zIndex.l4};
+  z-index: ${({ theme }) => theme.zIndex.l3};
   position: absolute;
   top: 95%;
   left: 50%;
@@ -55,7 +55,7 @@ const Dot = styled.div`
     `};
 `;
 
-const TIMEOUT_DURATION = 6000;
+const TIMEOUT_DURATION = 7000;
 const initialState = 1;
 
 const Slider = () => {

@@ -7,8 +7,10 @@ const GlobalStyle = createGlobalStyle`
 }
 
 input, button, input:focus, button:focus, select:focus{
-outline: none!important
+outline: none!important;
+border: none;
 }
+
 
 button:hover{
     cursor: pointer;
