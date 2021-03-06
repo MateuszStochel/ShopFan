@@ -1,9 +1,11 @@
 import React from "react";
-import styled from "styled-components";
+
 import image from "./assets/Images/category.jpg";
-import image2 from "./assets/Images/category3.jpg";
-import image3 from "./assets/Images/category7.jpg";
-import image4 from "./assets/Images/category5.jpg";
+import image2 from "./assets/Images/category2.jpg";
+import image3 from "./assets/Images/category3.jpg";
+import image4 from "./assets/Images/category4.jpg";
+
+import styled from "styled-components";
 
 const CategoriesWrapper = styled.div`
   display: flex;
@@ -74,6 +76,7 @@ const CategoryLink = styled.div`
   margin-top: 10px;
   height: 100%;
   cursor: pointer;
+
   &:hover ${CategoryButton} {
     background-color: ${({ theme }) => theme.white};
     color: ${({ theme }) => theme.black};

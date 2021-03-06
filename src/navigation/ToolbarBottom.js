@@ -1,4 +1,5 @@
 import React from "react";
+
 import styled, { css } from "styled-components";
 
 const ToolbarBottomWrapper = styled.div`
@@ -9,7 +10,7 @@ const ToolbarBottomWrapper = styled.div`
   height: 30px;
   background-color: ${({ theme }) => theme.blackTransparent};
   ${({ backgroundTransparent }) =>
-    !backgroundTransparent &&
+    backgroundTransparent &&
     css`
       ${({ theme }) => theme.mq.lg} {
         background: ${({ theme }) => theme.transparent};

@@ -28,7 +28,7 @@ const Navigation = () => {
     <Wrapper>
       <ToolbarTop isBackgroundTransparent={pathname === "/" && scrollY < 20} />
       <ToolbarBottom
-        isBackgroundTransparent={pathname === "/" && scrollY > 20}
+        isBackgroundTransparent={pathname === "/" && scrollY < 20}
       />
       <SideDrawer />
       <SideShoppingCart />

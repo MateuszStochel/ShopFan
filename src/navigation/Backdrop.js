@@ -1,7 +1,9 @@
+import React, { useContext } from "react";
+
+import { NavigationContext } from "../context/NavigationProvider";
+
 import styled from "styled-components";
 
-import React, { useContext } from "react";
-import { NavigationContext } from "../context/NavigationProvider";
 const BackdropNav = styled.div`
   position: fixed;
   top: 0;
