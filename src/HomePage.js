@@ -8,6 +8,7 @@ import { listenToEventsFromFirestore } from "./firestore/firestoreService";
 import useFirestoreCollection from "./hooks/useFirestoreCollection";
 import { useDispatch, useSelector } from "react-redux";
 import { listenToEvents } from "./store/actions/fetchActions";
+import PromoProducts from "./PromoProducts";
 
 const Wrapper = styled.div`
   position: absolute;
@@ -19,6 +20,8 @@ const HomePage = () => {
   const dispatch = useDispatch();
   const { items } = useSelector((state) => state.items);
 
+  const promoItems = items.filter((item) => item.promo === true);
+
   useFirestoreCollection({
     query: () => listenToEventsFromFirestore(),
     data: (events) => dispatch(listenToEvents(events)),
@@ -29,6 +32,7 @@ const HomePage = () => {
     <Wrapper>
       <Slider />
       <Categories />
+      <PromoProducts products={items} />
     </Wrapper>
   );
 };
