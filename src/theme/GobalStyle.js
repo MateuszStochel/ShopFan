@@ -8,7 +8,6 @@ const GlobalStyle = createGlobalStyle`
 
 input, button, input:focus, button:focus, select:focus{
 outline: none!important;
-border: none;
 }
 
 

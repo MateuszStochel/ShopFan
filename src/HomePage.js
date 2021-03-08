@@ -22,12 +22,6 @@ const HomePage = () => {
 
   const promoItems = items.filter((item) => item.promo === true);
 
-  useFirestoreCollection({
-    query: () => listenToEventsFromFirestore(),
-    data: (events) => dispatch(listenToEvents(events)),
-    deps: [dispatch],
-  });
-
   return (
     <Wrapper>
       <Slider />

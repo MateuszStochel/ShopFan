@@ -17,7 +17,6 @@ const SideNavWrapper = styled.div`
   align-items: center;
   transition: 0.3s;
   z-index: ${({ theme }) => theme.zIndex.l10};
-  background-color: red;
   ${({ side }) =>
     side === "right" &&
     css`

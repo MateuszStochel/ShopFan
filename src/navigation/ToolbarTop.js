@@ -14,7 +14,7 @@ const ToolbarWrapper = styled.div`
   position: fixed;
   top: 30px;
   width: 100%;
-  border-bottom: 1px solid white;
+  box-shadow: 0 0.5px 0 grey;
   height: 70px;
   transition: 0.3s;
   background-color: ${({ theme }) => theme.white};
@@ -118,7 +118,7 @@ const ToolbarTop = ({ isBackgroundTransparent }) => {
           <Option sideMenu visible onClick={drawerToggleClickHandler}>
             <Icon icon={bars} />
           </Option>
-          <LinkItem to="/">Home</LinkItem>
+          <LinkItem to="/catalog">Home</LinkItem>
           <LinkItem to="/">Catalog</LinkItem>
         </LinkItemsWrapper>
         <LogoWrapper>
