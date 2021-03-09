@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Header from "./Header";
 import styled from "styled-components";
 import filtersIcon from "./assets/svg/filters.svg";
 import Select from "react-select";
 import Options from "./Options";
 import FiltersContent from "./FilterContent";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { filterCategories } from "./store/actions/productsActions";
 
 const options = [
   { value: "featured", label: "Featured" },
@@ -59,35 +60,33 @@ const FiltersWrapper = styled.div`
 
 const CatalogPage = () => {
   const [isFiltersVisible, setFiltersVisible] = useState(false);
-  const [categoryFilter, setCategoryFilter] = useState(null);
+  const dispatch = useDispatch();
   const { items } = useSelector((state) => state.items);
+  const { selectedCategories } = useSelector((state) => state.categories);
 
   const handleToggleAsideFilters = () => {
     setFiltersVisible(!isFiltersVisible);
   };
 
-  const groupEventsByCategory = items.reduce(
-    (groupedEventsByCategory, currentEvent) => ({
-      ...groupedEventsByCategory,
-      [currentEvent["category"]]: (
-        groupedEventsByCategory[currentEvent["category"]] || []
-      ).concat(currentEvent),
-    }),
-    {}
-  );
-  console.log(groupEventsByCategory);
-
   const setSelected = (checkedCategory) => {
-    const mySelectedCategories = new Set(categoryFilter);
+    const mySelectedCategories = new Set(selectedCategories);
     mySelectedCategories.has(checkedCategory)
       ? mySelectedCategories.delete(checkedCategory)
       : mySelectedCategories.add(checkedCategory);
     const mySelectedCategoriesArray = Array.from(mySelectedCategories);
-
-    setCategoryFilter(
-      mySelectedCategoriesArray.length ? mySelectedCategoriesArray : null
+    dispatch(
+      filterCategories(
+        mySelectedCategoriesArray.length ? mySelectedCategoriesArray : null
+      )
     );
   };
+
+  const selectedProducts = selectedCategories?.reduce(
+    (products, selectedCategory) => {
+      return [...products, ...items[selectedCategory]];
+    },
+    []
+  );
 
   return (
     <CatalogPageWrapper>
@@ -104,14 +103,9 @@ const CatalogPage = () => {
             isActive={isFiltersVisible}
             close={handleToggleAsideFilters}
             setCategoryFilter={setSelected}
-            categoryFilter={categoryFilter}
           />
           <FiltersWrapper>
-            <FiltersContent
-              setCategory={setCategoryFilter}
-              setCategoryFilter={setSelected}
-              categoryFilter={categoryFilter}
-            />
+            <FiltersContent setCategoryFilter={setSelected} />
           </FiltersWrapper>
           <CatalogProducts />
         </CategoryWrapper>

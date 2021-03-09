@@ -1,7 +1,8 @@
-import { FETCH_EVENTS } from "../constans/fetchConstans";
+import { FETCH_CATEGORIES, FETCH_EVENTS } from "../constans/fetchConstans";
 
 const initialState = {
   items: [],
+  categories: [],
 };
 
 export default function eventReducer(state = initialState, { type, payload }) {
@@ -10,6 +11,11 @@ export default function eventReducer(state = initialState, { type, payload }) {
       return {
         ...state,
         items: payload,
+      };
+    case FETCH_CATEGORIES:
+      return {
+        ...state,
+        categories: payload,
       };
     default:
       return state;

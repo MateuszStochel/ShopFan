@@ -17,16 +17,11 @@ const Wrapper = styled.div`
   width: 100%;
 `;
 const HomePage = () => {
-  const dispatch = useDispatch();
-  const { items } = useSelector((state) => state.items);
-
-  const promoItems = items.filter((item) => item.promo === true);
-
   return (
     <Wrapper>
       <Slider />
       <Categories />
-      <PromoProducts products={items} />
+      <PromoProducts />
     </Wrapper>
   );
 };

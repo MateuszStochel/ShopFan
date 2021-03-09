@@ -1,6 +1,7 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled, { css } from "styled-components";
+import { filterCategories } from "./store/actions/productsActions";
 
 const FilterWrapper = styled.div`
   width: 100%;
@@ -43,18 +44,19 @@ const CategoryWrapper = styled.div`
     `}
 `;
 
-const CategoriesFilter = ({ setCategoryFilter, categoryFilter }) => {
-  const { items } = useSelector((state) => state.items);
+const CategoriesFilter = ({ setCategoryFilter }) => {
+  const { categories } = useSelector((state) => state.items);
+  const { selectedCategories } = useSelector((state) => state.categories);
 
-  const products = items.map((item) => (
+  const products = categories?.map(({ category }) => (
     <FilterWrapper>
       <CategoryWrapper
-        isActive={categoryFilter?.some(
-          (category) => category === item.category
+        isActive={selectedCategories?.some(
+          (categorys) => categorys === category
         )}
-        onClick={() => setCategoryFilter(item.category)}
+        onClick={() => setCategoryFilter(category)}
       >
-        <Category>{item.category}</Category>
+        <Category>{category}</Category>
         <Select />
       </CategoryWrapper>
     </FilterWrapper>

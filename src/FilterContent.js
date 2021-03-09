@@ -35,22 +35,15 @@ const ButtonClear = styled.button`
   font-size: 20px;
 `;
 
-const FiltersCategories = ({
-  setCategoryFilter,
-  categoryFilter,
-  setCategory,
-}) => {
+const FiltersCategories = ({ setCategoryFilter }) => {
   return (
     <>
       <Header>Categories</Header>
       <OptionsWrapper>
-        <CategoriesFilter
-          setCategoryFilter={setCategoryFilter}
-          categoryFilter={categoryFilter}
-        />
+        <CategoriesFilter setCategoryFilter={setCategoryFilter} />
         <ButtonsWrapper>
           <ButtonApply>Apply</ButtonApply>
-          <ButtonClear onClick={() => setCategory(null)}>Clear</ButtonClear>
+          <ButtonClear>Clear</ButtonClear>
         </ButtonsWrapper>
       </OptionsWrapper>
     </>

@@ -6,6 +6,10 @@ export function listenToEventsFromFirestore() {
   let eventsRef = db.collection("Items");
   return eventsRef;
 }
+export function listenToCategoriesFromFirestore() {
+  let categoriesRef = db.collection("Categories");
+  return categoriesRef;
+}
 
 export function dataFromSnapshot(snapshot) {
   const data = snapshot.data();
