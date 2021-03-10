@@ -102,7 +102,6 @@ const Button = styled.button`
   }
 `;
 const Slide = ({ title, subTitle, image, isActive }) => {
-  console.log(isActive);
   return (
     <SlideWrapper isActive={isActive}>
       <InnerWrapper img={image} alt="sliderImage">

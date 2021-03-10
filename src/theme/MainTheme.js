@@ -13,6 +13,7 @@ export const theme = {
   black: "rgb(0,0,0)",
   blackTransparent: "rgba(0,0,0, 0.6)",
   whiteTransparent: "rgba(250,250,250, 0.3)",
+  grey: "grey",
   zIndex: {
     l1: "101",
     l2: "201",

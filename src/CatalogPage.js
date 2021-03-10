@@ -1,20 +1,38 @@
 import React, { useState } from "react";
-import Header from "./Header";
-import styled from "styled-components";
-import filtersIcon from "./assets/svg/filters.svg";
 import Select from "react-select";
+
+import { useDispatch, useSelector } from "react-redux";
+import {
+  filterCategories,
+  sortingProducts,
+} from "./store/actions/productsActions";
+
 import Options from "./Options";
 import FiltersContent from "./FilterContent";
-import { useDispatch, useSelector } from "react-redux";
-import { filterCategories } from "./store/actions/productsActions";
+import Header from "./Header";
 
-const options = [
-  { value: "featured", label: "Featured" },
-  { value: "priceLowToHigh", label: "Price low to high" },
-  { Value: "priceHighToLow", label: "Price high to low" },
+import styled from "styled-components";
+import filtersIcon from "./assets/svg/filters.svg";
+import CatalogProducts from "./CatalogProducts";
+import {
+  ALPHABET_ASC,
+  ALPHABET_DESC,
+  FEATURED,
+  PRICE_ASC,
+  PRICE_DESC,
+} from "./store/constans/productsConstans";
+
+export const options = [
+  { value: FEATURED, label: "Featured" },
+  { value: PRICE_ASC, label: "Price, low to high" },
+  { value: PRICE_DESC, label: "Price, high to low" },
+  { value: ALPHABET_ASC, label: "Alphabetically, A-Z" },
+  { value: ALPHABET_DESC, label: "Alphabetically, Z-A" },
 ];
-const CategoryWrapper = styled.div`
+
+const ProductsWrapper = styled.div`
   display: flex;
+  justify-content: space-between;
   width: 100%;
   margin-top: 50px;
 `;
@@ -29,10 +47,10 @@ const ContentWrapper = styled.div`
 `;
 const CatalogOptionFilter = styled.div`
   display: flex;
-  width: 100%;
   justify-content: space-between;
+  width: 100%;
 `;
-const CatalogProducts = styled.div``;
+
 const ProductsFilter = styled.button`
   background-image: url(${filtersIcon});
   background-size: 21px;
@@ -45,7 +63,7 @@ const ProductsFilter = styled.button`
     display: none;
   }
 `;
-const SelectOptions = styled(Select)`
+const SelectProductsOptions = styled(Select)`
   width: 200px;
   margin-right: 20px;
 `;
@@ -58,35 +76,31 @@ const FiltersWrapper = styled.div`
   }
 `;
 
+const transformArraysToArray = (state) => {
+  const {
+    categories,
+    items: { items },
+  } = state;
+  return categories.selectedCategories?.reduce((products, selectedCategory) => {
+    return [...products, ...items[selectedCategory]];
+  }, []);
+};
+
 const CatalogPage = () => {
+  const { items } = useSelector((state) => state.items);
   const [isFiltersVisible, setFiltersVisible] = useState(false);
   const dispatch = useDispatch();
-  const { items } = useSelector((state) => state.items);
-  const { selectedCategories } = useSelector((state) => state.categories);
+  const itemsValues = Object.values(items).flat();
 
   const handleToggleAsideFilters = () => {
     setFiltersVisible(!isFiltersVisible);
   };
 
-  const setSelected = (checkedCategory) => {
-    const mySelectedCategories = new Set(selectedCategories);
-    mySelectedCategories.has(checkedCategory)
-      ? mySelectedCategories.delete(checkedCategory)
-      : mySelectedCategories.add(checkedCategory);
-    const mySelectedCategoriesArray = Array.from(mySelectedCategories);
-    dispatch(
-      filterCategories(
-        mySelectedCategoriesArray.length ? mySelectedCategoriesArray : null
-      )
-    );
-  };
+  const selectedProducts = useSelector(transformArraysToArray);
 
-  const selectedProducts = selectedCategories?.reduce(
-    (products, selectedCategory) => {
-      return [...products, ...items[selectedCategory]];
-    },
-    []
-  );
+  const setSelected = (checkedCategory) => {
+    dispatch(filterCategories(checkedCategory));
+  };
 
   return (
     <CatalogPageWrapper>
@@ -96,19 +110,25 @@ const CatalogPage = () => {
           <ProductsFilter onClick={handleToggleAsideFilters}>
             Products
           </ProductsFilter>
-          <SelectOptions options={options} />
+          <SelectProductsOptions
+            options={options}
+            onChange={(option) => dispatch(sortingProducts(option.value))}
+          />
         </CatalogOptionFilter>
-        <CategoryWrapper>
+        <ProductsWrapper>
           <Options
             isActive={isFiltersVisible}
             close={handleToggleAsideFilters}
             setCategoryFilter={setSelected}
           />
           <FiltersWrapper>
-            <FiltersContent setCategoryFilter={setSelected} />
+            <FiltersContent
+              setCategoryFilter={setSelected}
+              setProducts={selectedProducts}
+            />
           </FiltersWrapper>
-          <CatalogProducts />
-        </CategoryWrapper>
+          <CatalogProducts itemsValues={itemsValues} />
+        </ProductsWrapper>
       </ContentWrapper>
     </CatalogPageWrapper>
   );

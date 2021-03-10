@@ -1,6 +1,8 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import CategoriesFilter from "./CategoriesFilter";
+import { setSelectedProducts } from "./store/actions/productsActions";
 
 const OptionsWrapper = styled.div`
   width: 100%;
@@ -35,15 +37,26 @@ const ButtonClear = styled.button`
   font-size: 20px;
 `;
 
-const FiltersCategories = ({ setCategoryFilter }) => {
+const FiltersCategories = ({ setCategoryFilter, setProducts }) => {
+  const dispatch = useDispatch();
+
+  const clearSelectedCategories = () => {
+    setCategoryFilter(null);
+    dispatch(setSelectedProducts(null));
+  };
+
   return (
     <>
       <Header>Categories</Header>
       <OptionsWrapper>
         <CategoriesFilter setCategoryFilter={setCategoryFilter} />
         <ButtonsWrapper>
-          <ButtonApply>Apply</ButtonApply>
-          <ButtonClear>Clear</ButtonClear>
+          <ButtonApply
+            onClick={() => dispatch(setSelectedProducts(setProducts))}
+          >
+            Apply
+          </ButtonApply>
+          <ButtonClear onClick={clearSelectedCategories}>Clear</ButtonClear>
         </ButtonsWrapper>
       </OptionsWrapper>
     </>

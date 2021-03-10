@@ -3,23 +3,20 @@ import { useLocation } from "react-router";
 import styled from "styled-components";
 
 const HeaderWrapper = styled.div`
+  display: flex;
+  margin-top: 150px;
   width: 100%;
   height: 60px;
-  margin-top: 150px;
-  display: flex;
-  justify-content: center;
   align-items: center;
-
-  box-shadow: 0 0.4px 0 grey;
+  box-shadow: 0 0.4px 0 ${({ theme }) => theme.grey};
 `;
 
 const PageTitle = styled.h1`
+  margin: 0 auto;
+  max-width: 1500px;
   width: 100%;
   font-size: 30px;
-  position: relative;
   padding-left: 20px;
-  max-width: 1500px;
-  margin: 0 auto;
   text-transform: uppercase;
 `;
 
