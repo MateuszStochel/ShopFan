@@ -1,6 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import {
+  ALPHABET_ASC,
+  ALPHABET_DESC,
+  PRICE_ASC,
+  PRICE_DESC,
+} from "./store/constans/productsConstans";
 
 const CatalogProductsWrapper = styled.div`
   width: 75%;
@@ -30,25 +36,28 @@ const ProductImage = styled.img`
   }
 `;
 
-const sortedProducts = (selectedSortOption) => {
-  switch (selectedSortOption) {
-    case: 'SORT_BY_PRICE_ASCENDING'
-    	return (selectedProducts || itemsValues).sort
-    case: 'SORT_BY_PRICE_DESCENDING'
-        	return zwróc posortowane produkty by descendning;
-    case: 'SORT_BY_NAME_ASCENDING'  
-    		return zwroc posortowane produkty by name ascending
-
-  }
-}
-
 const ProductInfo = styled.h3``;
 const CatalogProducts = ({ itemsValues }) => {
   const { selectedProducts } = useSelector((state) => state.categories);
   const { selectedSortOption } = useSelector((state) => state.categories);
-  
-  
-  
+
+  const sortedProducts = (selectedSortOption) => {
+    switch (selectedSortOption) {
+      case PRICE_ASC:
+        return (selectedProducts || itemsValues).sort((a, b) =>
+         
+        );
+      case PRICE_DESC:
+        return (selectedProducts || itemsValues).sort((a, b) => );
+      case ALPHABET_ASC:
+        return (selectedProducts || itemsValues).sort((a, b) =>);
+
+      case ALPHABET_DESC:
+        return (selectedProducts || itemsValues).sort((a, b) => 
+      default:
+        return 
+    }
+  };
 
   const products = (selectedProducts || itemsValues).map((product) => (
     <ProductsWrapper>
