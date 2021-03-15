@@ -1,6 +1,5 @@
 export const FILTER_CATEGORIES = "FILTER_CATEGORIES";
 export const SET_SELECTED_PRODUCTS = "SET_SELECTED_PRODUCTS";
-export const FEATURED = "FEATURED";
 export const PRICE_ASC = "PRICE_ASC";
 export const PRICE_DESC = "PRICE_DESC";
 export const ALPHABET_ASC = "ALPHABET_ASC";

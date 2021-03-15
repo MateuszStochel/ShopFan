@@ -8,7 +8,7 @@ import {
 const initialState = {
   selectedCategories: null,
   selectedProducts: null,
-  selectedSortOption: options[2].value,
+  selectedSortOption: options[0].value,
 };
 
 export default function categoriesReducer(

@@ -17,17 +17,15 @@ import CatalogProducts from "./CatalogProducts";
 import {
   ALPHABET_ASC,
   ALPHABET_DESC,
-  FEATURED,
   PRICE_ASC,
   PRICE_DESC,
 } from "./store/constans/productsConstans";
 
 export const options = [
-  { value: FEATURED, label: "Featured" },
-  { value: PRICE_ASC, label: "Price, low to high" },
-  { value: PRICE_DESC, label: "Price, high to low" },
   { value: ALPHABET_ASC, label: "Alphabetically, A-Z" },
   { value: ALPHABET_DESC, label: "Alphabetically, Z-A" },
+  { value: PRICE_ASC, label: "Price, low to high" },
+  { value: PRICE_DESC, label: "Price, high to low" },
 ];
 
 const ProductsWrapper = styled.div`

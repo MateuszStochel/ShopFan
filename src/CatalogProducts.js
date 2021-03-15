@@ -41,25 +41,22 @@ const CatalogProducts = ({ itemsValues }) => {
   const { selectedProducts } = useSelector((state) => state.categories);
   const { selectedSortOption } = useSelector((state) => state.categories);
 
-  const sortedProducts = (selectedSortOption) => {
+  const sortedProducts = (selectedProducts || itemsValues).sort((a, b) => {
     switch (selectedSortOption) {
-      case PRICE_ASC:
-        return (selectedProducts || itemsValues).sort((a, b) =>
-         
-        );
-      case PRICE_DESC:
-        return (selectedProducts || itemsValues).sort((a, b) => );
       case ALPHABET_ASC:
-        return (selectedProducts || itemsValues).sort((a, b) =>);
-
+        return a.name.localeCompare(b.name);
       case ALPHABET_DESC:
-        return (selectedProducts || itemsValues).sort((a, b) => 
+        return b.name.localeCompare(a.name);
+      case PRICE_ASC:
+        return a.price.localeCompare(b.price);
+      case PRICE_DESC:
+        return b.price.localeCompare(a.price);
       default:
-        return 
+        return a.name.localeCompare(b.name);
     }
-  };
+  });
 
-  const products = (selectedProducts || itemsValues).map((product) => (
+  const products = sortedProducts.map((product) => (
     <ProductsWrapper>
       <ImageWrapper>
         <ProductImage src={product.image} alt={product.name} />
