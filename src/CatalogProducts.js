@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import heartIcon from "./assets/svg/heart.svg";
 import {
   ALPHABET_ASC,
   ALPHABET_DESC,
@@ -14,8 +15,10 @@ const CatalogProductsWrapper = styled.div`
   flex-wrap: wrap;
 `;
 const ProductsWrapper = styled.div`
-  flex-basis: 33%;
-  margin-right: 0.33%;
+  position: relative;
+  flex-basis: 30%;
+  margin-right: 3.3%;
+  margin-bottom: 15px;
   overflow: hidden;
 `;
 const ImageWrapper = styled.div`
@@ -35,8 +38,29 @@ const ProductImage = styled.img`
     transform: scale(1.1);
   }
 `;
+const Icon = styled.div`
+  z-index: ${({ theme }) => theme.zIndex.l3};
+  width: 25px;
+  height: 25px;
+  background: url(${({ icon }) => icon}) no-repeat center;
+  background-size: 100%;
+  border: none;
+  cursor: pointer;
+  filter: invert(0.6);
+  &&:hover {
+    filter: invert(0);
+  }
+`;
+const ProductInfoWrapper = styled.div`
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+`;
 
-const ProductInfo = styled.h3``;
+const ProductName = styled.h3`
+  font-size: 20px;
+`;
+
 const CatalogProducts = ({ itemsValues }) => {
   const { selectedProducts } = useSelector((state) => state.categories);
   const { selectedSortOption } = useSelector((state) => state.categories);
@@ -61,8 +85,12 @@ const CatalogProducts = ({ itemsValues }) => {
       <ImageWrapper>
         <ProductImage src={product.image} alt={product.name} />
       </ImageWrapper>
-      <ProductInfo>{product.name}</ProductInfo>
-      <span>{product.price}</span>
+      <ProductInfoWrapper>
+        <ProductName>{product.name}</ProductName>
+        <Icon icon={heartIcon} />
+      </ProductInfoWrapper>
+
+      <span>{product.price}$</span>
     </ProductsWrapper>
   ));
 

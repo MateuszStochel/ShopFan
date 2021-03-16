@@ -1,7 +1,8 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+
+import { useSelector } from "react-redux";
+
 import styled, { css } from "styled-components";
-import { filterCategories } from "./store/actions/productsActions";
 
 const FilterWrapper = styled.div`
   width: 100%;
@@ -21,9 +22,9 @@ const CategoryWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 15px;
-  margin-top: 15px;
   width: 100%;
+  margin-top: 15px;
+  padding-bottom: 15px;
   cursor: pointer;
   &:hover ${Category} {
     color: black;

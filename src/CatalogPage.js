@@ -13,6 +13,7 @@ import Header from "./Header";
 
 import styled from "styled-components";
 import filtersIcon from "./assets/svg/filters.svg";
+
 import CatalogProducts from "./CatalogProducts";
 import {
   ALPHABET_ASC,
@@ -85,16 +86,15 @@ const transformArraysToArray = (state) => {
 };
 
 const CatalogPage = () => {
-  const { items } = useSelector((state) => state.items);
-  const [isFiltersVisible, setFiltersVisible] = useState(false);
   const dispatch = useDispatch();
+  const { items } = useSelector((state) => state.items);
+  const selectedProducts = useSelector(transformArraysToArray);
+  const [isFiltersVisible, setFiltersVisible] = useState(false);
   const itemsValues = Object.values(items).flat();
 
   const handleToggleAsideFilters = () => {
     setFiltersVisible(!isFiltersVisible);
   };
-
-  const selectedProducts = useSelector(transformArraysToArray);
 
   const setSelected = (checkedCategory) => {
     dispatch(filterCategories(checkedCategory));

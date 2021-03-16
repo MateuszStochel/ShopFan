@@ -1,8 +1,11 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
+
+import { useDispatch } from "react-redux";
+
 import CategoriesFilter from "./CategoriesFilter";
 import { setSelectedProducts } from "./store/actions/productsActions";
+
+import styled from "styled-components";
 
 const OptionsWrapper = styled.div`
   width: 100%;
